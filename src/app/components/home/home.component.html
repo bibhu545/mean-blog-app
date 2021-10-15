@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="col-md-6 col-xs-12" *ngFor="let item of posts">
+        <div class="post-wrapper shadow">
+            <div class="card">
+                <div class="card-body">
+                    <h5 [innerText]="item.title"></h5>
+                    <p>
+                        by
+                        <a href="javascript:void" [innerText]="item.authorDetails.firstName"
+                            (click)="fetchByAuthor(item)">
+                        </a>
+                        <a href="javascript:void(0)" (click)="fetchByCategory(item)"
+                            class="badge badge-primary float-right" [innerText]="item.categoryDetails.name">Primary</a>
+                    </p>
+                    <p [innerHtml]="getSubstring(item)"></p>
+                </div>
+                <div class="card-footer">
+                    {{item.addedOn | date: 'dd/MM/yyyy'}}
+                    <a href="javascript:void(0)" class="float-right" (click)="goToPost(item.postId)">
+                        Read More &rarr;
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

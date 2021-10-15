@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CommonService } from './services/common.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'mean-blog-app';
+  isLoading: boolean = false;
+
+  constructor(
+    private commonService: CommonService
+  ) { }
+
+  ngOnInit(): void {
+    this.commonService.loading$.subscribe(data => {
+      this.isLoading = data;
+    });
+  }
 }

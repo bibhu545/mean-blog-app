@@ -1,0 +1,23 @@
+<div class="card mb-3">
+    <div class="card-header">Search</div>
+    <div class="card-body">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Enter keywords...">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="button">Go!</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card">
+    <div class="card-header">Categories</div>
+    <div class="card-body">
+        <div class="row">
+            <ng-container *ngFor="let item of categories">
+                <div class="col-6">
+                    <button class="btn btn-link" (click)="fetchByCategory(item)" [innerText]="item.text"></button>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+<ng-container [ngSwitch]="accountMode">
+    <ng-container *ngSwitchCase="0">
+        <app-login></app-login>
+    </ng-container>
+    <ng-container *ngSwitchCase="1">
+        <app-signup></app-signup>
+    </ng-container>
+    <ng-container *ngSwitchCase="2">
+        <app-changepassword></app-changepassword>
+    </ng-container>
+    <ng-container *ngSwitchDefault>
+        <app-forgotpassword></app-forgotpassword>
+    </ng-container>
+</ng-container>

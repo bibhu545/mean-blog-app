@@ -1,1 +1,40 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orelega+One&display=swap');
+
+html, body { height: 100%; }
+body { 
+    margin: 0;
+    font-family: 'Roboto Slab', serif;
+    overflow-x: hidden;
+}
+.custom-body {
+    padding-top: 57px;
+    min-height: 100vh;
+    background: linear-gradient(-45deg, #e6e6e6, white, white, #e6e6e6);
+}
+.font-sm{
+    font-size: 0.9rem !important;
+}
+
+.table-bg {
+    background: linear-gradient(-45deg, #a27fd5, #4fbdb6);
+}
+
+.shadow{
+    box-shadow: 5px 8px 10px #888888;
+}
+.text-orange{
+    color: #FF5E14;
+}
+.cursor-pointer{
+    cursor: pointer;
+}
+
+.btn-spn{
+    cursor: pointer;
+}
+
+.btn-spn:hover {
+    color: #1976D2;
+}

@@ -1,0 +1,22 @@
+<div class="row mb-3">
+    <div class="col-12 shadow p-3" *ngIf="post">
+        <h5><strong>{{post.title}}</strong></h5>
+        <p>
+            <strong>
+                {{post.readingTime}}
+            </strong> minuetes read
+            <span class="float-right">
+                posted on: <strong>{{post.addedOn | date: 'dd/MM/yyyy'}}</strong>
+            </span>
+        </p>
+        <p>
+            by
+            <a href="javascript:void" [innerText]="post.authorDetails.firstName" (click)="fetchByAuthor(post)">
+            </a>
+            <a href="javascript:void(0)" (click)="fetchByCategory(post)" class="float-right"
+                [innerText]="'Category: ' + post.categoryDetails.name"></a>
+        </p>
+        <p [innerHtml]="post.body"></p>
+    </div>
+</div>
+<app-comment *ngIf="post" [post]="post"></app-comment>

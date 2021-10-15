@@ -1,0 +1,51 @@
+<div class="row pl-2 pr-2">
+    <div class="col-12">
+        <h3 class="text-center m-2">Create New Story</h3>
+        <form [formGroup]="postForm">
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" id="title" class="form-control"
+                    placeholder="Express your title wihin 100 characters" formControlName="title" />
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="categoryId">Category:</label>
+                        <select id="categoryId" class="form-control" formControlName="categoryId">
+                            <option value="">Select</option>
+                            <option [value]="item.value" *ngFor="let item of categories" [innerText]="item.text"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="readingTime">Reading time:</label>
+                        <input type="number" min="0" max="30" id="readingTime" class="form-control" formControlName="readingTime">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="body">Body:</label>
+                <ckeditor [editor]="Editor" [config]="config" formControlName="body"></ckeditor>
+            </div>
+            <div class="row mb-3">
+                <div class="col-6">
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="disableComments" formControlName="disableComments">
+                        <label class="form-check-label" for="disableComments">Disable Comments</label>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="isFeatured" formControlName="isFeatured">
+                        <label class="form-check-label" for="isFeatured">Mark Featured</label>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary mr-2" (click)="createPost()">Submit</button>
+                <a href="/dashboard" class="btn btn-light border border-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>

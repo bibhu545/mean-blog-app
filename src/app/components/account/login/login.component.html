@@ -1,0 +1,26 @@
+<div class="card">
+    <div class="card-header">
+        <strong>Login</strong>
+        <span class="float-right btn-spn" (click)="closeModal()">
+            &#10006;
+        </span>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="loginForm">
+            <div class="form-group">
+                <label for="email">Email*:</label>
+                <input type="email" formControlName="email" class="form-control" id="email"
+                    [ngClass]="{'is-invalid': this.loginForm.get('email').invalid && (this.loginForm.get('email').dirty || this.loginForm.get('email').touched) }" />
+            </div>
+            <div class="form-group">
+                <label for="password">Password*:</label>
+                <input type="password" formControlName="password" class="form-control" id="password"
+                    [ngClass]="{'is-invalid': this.loginForm.get('password').invalid && (this.loginForm.get('password').dirty || this.loginForm.get('password').touched) }" />
+            </div>
+            <div class="text-right">
+                <button type="button" class="btn btn-link mr-2" (click)="openSignup()">Create an account</button>
+                <button type="submit" class="btn btn-primary" (click)="login()">Login</button>
+            </div>
+        </form>
+    </div>
+</div>

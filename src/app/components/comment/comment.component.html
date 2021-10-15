@@ -1,0 +1,33 @@
+<div class="row mb-2">
+    <div class="col-12">
+        <h5><strong>Comments:</strong></h5>
+    </div>
+</div>
+<form [formGroup]="commentForm">
+    <div class="row mb-2">
+        <div class="col-2 text-center">
+            <img src="../../../assets/user.png" alt="user" height="50" width="50">
+        </div>
+        <div class="col-10">
+            <ckeditor [editor]="Editor" [config]="config" formControlName="body"></ckeditor>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-12 text-right">
+            <button class="btn btn-primary" (click)="addComment()" [disabled]="!isLoggedIn">
+                <span *ngIf="isLoggedIn">Add A Comment</span>
+                <span *ngIf="!isLoggedIn">Login to add a comment</span>
+            </button>
+        </div>
+    </div>
+</form>
+
+<div class="row mb-2" *ngFor="let item of comments">
+    <div class="col-2 text-center">
+        <img src="../../../assets/user.png" alt="user" height="50" width="50">
+    </div>
+    <div class="col-10 pt-2">
+        <strong class="d-inline" [innerHTML]="item.userDetails.firstName + ' ' + item.userDetails.lastName"></strong>
+        <span [innerHTML]="item.commentBody"></span>
+    </div>
+</div>

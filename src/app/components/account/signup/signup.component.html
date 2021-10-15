@@ -1,0 +1,52 @@
+<div class="card">
+    <div class="card-header">
+        <strong>Signup</strong>
+        <span class="float-right btn-spn" (click)="closeModal()">
+            &#10006;
+        </span>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="signupForm">
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="firstName">First Name*:</label>
+                        <input type="text" formControlName="firstName" class="form-control" id="firstName"
+                            [ngClass]="{'is-invalid': this.signupForm.get('firstName').invalid && (this.signupForm.get('firstName').dirty || this.signupForm.get('firstName').touched) }" />
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="lastName">Last Name*:</label>
+                        <input type="text" formControlName="lastName" class="form-control" id="lastName"
+                            [ngClass]="{'is-invalid': this.signupForm.get('lastName').invalid && (this.signupForm.get('lastName').dirty || this.signupForm.get('lastName').touched) }" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email*:</label>
+                <input type="email" formControlName="email" class="form-control" id="email"
+                    [ngClass]="{'is-invalid': this.signupForm.get('email').invalid && (this.signupForm.get('email').dirty || this.signupForm.get('email').touched) }" />
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone*:</label>
+                <input type="text" formControlName="phone" class="form-control" id="phone"
+                    [ngClass]="{'is-invalid': this.signupForm.get('phone').invalid && (this.signupForm.get('phone').dirty || this.signupForm.get('phone').touched) }" />
+            </div>
+            <div class="form-group">
+                <label for="password">Password*:</label>
+                <input type="password" formControlName="password" class="form-control" id="password"
+                    [ngClass]="{'is-invalid': this.signupForm.get('password').invalid && (this.signupForm.get('password').dirty || this.signupForm.get('password').touched) }" />
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password*:</label>
+                <input type="confirmPassword" formControlName="confirmPassword" class="form-control" id="confirmPassword"
+                    [ngClass]="{'is-invalid': this.signupForm.get('confirmPassword').invalid && (this.signupForm.get('confirmPassword').dirty || this.signupForm.get('confirmPassword').touched) }" />
+            </div>
+            <div class="text-right">
+                <button type="button" class="btn btn-link mr-2" (click)="openLogin()">Already have an account?</button>
+                <button type="submit" class="btn btn-primary" (click)="signup()">Signup</button>
+            </div>
+        </form>
+    </div>
+</div>
