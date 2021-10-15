@@ -53,7 +53,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CKEditorModule,
     ModalModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    HttpService,
+    ModalService,
+    AccountService,
+    PostService,
+    CommonService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

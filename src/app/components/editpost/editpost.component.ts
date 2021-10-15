@@ -16,7 +16,10 @@ export class EditpostComponent implements OnInit {
 
   public Editor = CustomEditor;
   public config = {
-    placeholder: 'Create you story here...'
+    placeholder: 'Create you story here...',
+    simpleUpload: {
+      uploadUrl: 'https://meanblogapi.herokuapp.com/post/ckupload'
+    }
   }
   categories: DDLModel[] = [];
   postForm: FormGroup;
