@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CookieService as BaseCookieService } from 'ngx-cookie-service';
-import { Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { UserModel } from '../common/models';
 
 @Injectable({
@@ -8,7 +8,7 @@ import { UserModel } from '../common/models';
 })
 export class CookieService {
 
-  isLoggedIn: Subject<boolean> = new Subject<boolean>();
+  isLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.checkLogin());
   isLoggedIn$ = this.isLoggedIn.asObservable();
 
   constructor(

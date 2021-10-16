@@ -28,6 +28,7 @@
     </div>
     <div class="col-10 pt-2">
         <strong class="d-inline" [innerHTML]="item.userDetails.firstName + ' ' + item.userDetails.lastName"></strong>
+        <span *ngIf="item.userDetails?.userId === user?.userId" class="badge badge-primary ml-3">Author</span>
         <span [innerHTML]="item.commentBody"></span>
     </div>
 </div>

@@ -26,6 +26,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from "./components/home/home.component";
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EditprofileComponent } from './components/account/editprofile/editprofile.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ChangepasswordComponent,
     ForgotpasswordComponent,
     DashboardComponent,
-    ViewpostComponent
+    ViewpostComponent,
+    EditprofileComponent
   ],
   imports: [
     BrowserModule,

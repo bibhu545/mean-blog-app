@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { CategoryModel, PostModel, UserModel } from '../common/models';
+import { CommonService } from './common.service';
 import { HttpService } from './http.service';
 
 @Injectable({
@@ -13,18 +14,20 @@ export class PostService {
   posts$ = this.posts.asObservable();
 
   constructor(
-    private http: HttpService
+    private http: HttpService,
+    private commonService: CommonService
   ) { }
 
   fetchPosts(filter: any): void {
+    this.commonService.setLoding(true);
     this.http.post('/post/fetch-all', filter).pipe(take(1)).subscribe({
       next: response => {
         this.posts.next(formatPostModel(response?.data));
       },
       error: err => {
-        console.log(err);
+        this.commonService.showError();
       }
-    });
+    }).add(() => this.commonService.setLoding(false));
   }
 }
 

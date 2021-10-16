@@ -13,10 +13,20 @@
             by
             <a href="javascript:void" [innerText]="post.authorDetails.firstName" (click)="fetchByAuthor(post)">
             </a>
-            <a href="javascript:void(0)" (click)="fetchByCategory(post)" class="float-right"
-                [innerText]="'Category: ' + post.categoryDetails.name"></a>
+            <span class="float-right">
+                Category: 
+                <a href="javascript:void(0)" (click)="fetchByCategory(post)"
+                    [innerText]="post.categoryDetails.name"></a>
+            </span>
         </p>
         <p [innerHtml]="post.body"></p>
     </div>
 </div>
-<app-comment *ngIf="post" [post]="post"></app-comment>
+
+<div class="row p-3" *ngIf="post?.disableComments">
+    <div class="col-12 text-center">
+        Comments are turned off
+    </div>
+</div>
+
+<app-comment *ngIf="post && !post.disableComments" [post]="post"></app-comment>

@@ -17,7 +17,6 @@ export class SidebarComponent implements OnInit {
   constructor(
     private http: HttpService,
     private commonService: CommonService,
-    private postService: PostService,
     private router: Router
   ) { }
 
@@ -28,17 +27,13 @@ export class SidebarComponent implements OnInit {
         this.categories = response?.data?.map(r => new DDLModel(r._id, r.name));
       },
       error: err => {
-        console.log(err);
+        this.commonService.showError();
       }
     }).add(() => this.commonService.setLoding(false));
   }
 
   fetchByCategory(item: DDLModel): void {
-    let filter: any = {
-      category: item.value
-    }
-    this.postService.fetchPosts(filter);
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl(`/?categoryId=${item.value}`);
   }
 
 }

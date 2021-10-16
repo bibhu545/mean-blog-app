@@ -30,6 +30,7 @@ export class PostModel {
     categoryId: string;
     categoryDetails: CategoryModel;
     body: string;
+    bodyText: string;
     readingTime: number;
     disableComments: boolean;
     isFeatured: boolean;

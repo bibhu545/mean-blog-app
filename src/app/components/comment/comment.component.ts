@@ -18,6 +18,7 @@ export class CommentComponent implements OnInit {
   isLoggedIn: boolean = false;
   commentForm: FormGroup;
   comments: CommentModel[] = [];
+  user: UserModel;
   public Editor = CustomEditor;
   public config = {
     placeholder: 'Share your feedback...',
@@ -41,6 +42,10 @@ export class CommentComponent implements OnInit {
     this.createCommentForm();
     this.isLoggedIn = this.cookieService.checkLogin();
     this.getComments();
+    this.cookieService.isLoggedIn$.subscribe(data => {
+      this.isLoggedIn = data;
+      this.user = this.cookieService.getUserdataFromCookies();
+    });
   }
 
   getComments(): void {
@@ -59,12 +64,13 @@ export class CommentComponent implements OnInit {
             comment.userDetails.firstName = r.userDetails[0].firstName;
             comment.userDetails.lastName = r.userDetails[0].lastName;
             comment.userDetails.email = r.userDetails[0].email;
+            comment.userDetails.userId = r.userDetails[0]._id;
             return comment;
           });
         }
       },
       error: err => {
-        console.log(err);
+        this.commonService.showError();
       }
     });
   }
@@ -80,7 +86,7 @@ export class CommentComponent implements OnInit {
       this.commonService.setLoding(true);
       let apiData: any = {
         commentBody: this.commentForm.get('body').value,
-        user: this.cookieService.getUserdataFromCookies().userId,
+        user: this.user.userId,
         post: this.post.postId
       };
       this.http.post('/post/add-comment', apiData).subscribe({
@@ -88,7 +94,7 @@ export class CommentComponent implements OnInit {
           this.getComments();
         },
         error: err => {
-          console.log(err);
+          this.commonService.showError();
         }
       }).add(() => this.commonService.setLoding(false));
     }

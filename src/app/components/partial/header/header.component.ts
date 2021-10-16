@@ -24,6 +24,7 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.isLoggedIn = this.cookieService.checkLogin();
     this.cookieService.isLoggedIn$.subscribe(data => {
       this.isLoggedIn = data;
     });

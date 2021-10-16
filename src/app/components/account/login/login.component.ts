@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { UserModel } from 'src/app/common/models';
 import { AccountMode } from 'src/app/common/utils';
 import { AccountService } from 'src/app/services/account.service';
+import { CommonService } from 'src/app/services/common.service';
 import { CookieService } from 'src/app/services/cookie.service';
 import { HttpService } from 'src/app/services/http.service';
 import { ModalService } from 'src/app/services/modal.service';
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit {
     private accountService: AccountService,
     private modalService: ModalService,
     private http: HttpService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private commonService: CommonService
   ) { }
 
   ngOnInit(): void {
@@ -41,6 +43,7 @@ export class LoginComponent implements OnInit {
 
   login(): void {
     if (this.loginForm.valid) {
+      this.commonService.setLoding(true);
       let apiData: any = {
         email: this.loginForm.get('email')?.value,
         password: this.loginForm.get('password')?.value
@@ -61,9 +64,9 @@ export class LoginComponent implements OnInit {
           }
         },
         error: err => {
-          console.log(err);
+          this.commonService.showError();
         }
-      });
+      }).add(() => this.commonService.setLoding(false));
     }
     else {
       this.loginForm.markAllAsTouched();

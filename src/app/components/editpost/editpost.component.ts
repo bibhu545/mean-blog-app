@@ -40,7 +40,7 @@ export class EditpostComponent implements OnInit {
         this.categories = response?.data?.map(r => new DDLModel(r._id, r.name));
       },
       error: err => {
-        console.log(err);
+        this.commonService.showError();
       }
     }).add(() => this.commonService.setLoding(false));
   }
@@ -58,9 +58,11 @@ export class EditpostComponent implements OnInit {
 
   createPost(): void {
     if (this.postForm.valid) {
+      this.commonService.setLoding(true);
       let postModel: PostModel = new PostModel();
       postModel.authorId = this.cookieService.getUserdataFromCookies().userId;
       postModel.body = this.postForm.get('body').value;
+      postModel.bodyText = this.postForm.get('body').value?.replace(/<(.|\n)*?>/g, ' ');
       postModel.title = this.postForm.get('title').value;
       postModel.categoryId = this.postForm.get('categoryId').value;
       postModel.readingTime = this.postForm.get('readingTime').value;
@@ -73,9 +75,9 @@ export class EditpostComponent implements OnInit {
           }
         },
         error: err => {
-          console.log(err);
+          this.commonService.showError();
         }
-      })
+      }).add(() => this.commonService.setLoding(false));
     }
     else {
       this.postForm.markAllAsTouched();

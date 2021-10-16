@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonService } from './services/common.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { CommonService } from './services/common.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnChanges {
   title = 'mean-blog-app';
   isLoading: boolean = false;
 
@@ -15,6 +15,10 @@ export class AppComponent {
   ) { }
 
   ngOnInit(): void {
+
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
     this.commonService.loading$.subscribe(data => {
       this.isLoading = data;
     });
