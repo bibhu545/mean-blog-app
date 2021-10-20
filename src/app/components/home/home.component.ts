@@ -44,6 +44,7 @@ export class HomeComponent implements OnInit {
     this.postService.posts$.subscribe(data => {
       this.posts = data;
     });
+    setInterval(() => this.featuredNext(), 2000);
   }
 
   fetchByAuthor(item: PostModel): void {
@@ -70,12 +71,12 @@ export class HomeComponent implements OnInit {
 
   featuredNext(): void {
     this.currentPost += 1;
-    this.currentPost = this.currentPost > this.posts.length - 1 ? 0 : this.currentPost;
+    this.currentPost = this.currentPost > this.posts?.length - 1 ? 0 : this.currentPost;
   }
 
   featuredPrevious(): void {
     this.currentPost -= 1;
-    this.currentPost = this.currentPost < 0 ? this.posts.length - 1 : this.currentPost;
+    this.currentPost = this.currentPost < 0 ? this.posts?.length - 1 : this.currentPost;
   }
 
 }
