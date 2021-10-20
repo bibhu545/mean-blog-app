@@ -10,3 +10,16 @@
     height: 300px;
     background: lightgray;
 }
+
+.spn-link {
+    cursor: pointer;
+    transition: transform .2s;
+    line-height: 300px;
+    font-size: 20px;
+    color: gray;
+}
+
+.spn-link:hover {
+    color: royalblue;
+    transform: scale(1.1x);
+}

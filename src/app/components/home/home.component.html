@@ -1,3 +1,48 @@
+<div class="row mb-2">
+    <div class="col-12 text-center">
+        <h5>Featured Stories</h5>
+    </div>
+</div>
+<div class="row mb-3">
+    <div class="col-1 text-center">
+        <span class="spn-link" (click)="featuredPrevious()">
+            <i class="fas fa-arrow-circle-left"></i>
+        </span>
+    </div>
+    <div class="col-10">
+        <ng-container *ngFor="let item of posts;let i = index">
+            <div class="post-wrapper shadow" *ngIf="currentPost === i">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 [innerText]="item.title"></h5>
+                        <p>
+                            by
+                            <a href="javascript:void" [innerText]="item.authorDetails.firstName"
+                                (click)="fetchByAuthor(item)">
+                            </a>
+                            <a href="javascript:void(0)" (click)="fetchByCategory(item)"
+                                class="badge badge-primary float-right"
+                                [innerText]="item.categoryDetails.name">Primary</a>
+                        </p>
+                        <p [innerHtml]="getSubstring(item)"></p>
+                    </div>
+                    <div class="card-footer">
+                        {{item.addedOn | date: 'dd/MM/yyyy'}}
+                        <a href="javascript:void(0)" class="float-right" (click)="goToPost(item.postId)">
+                            Read More &rarr;
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+    <div class="col-1 text-center">
+        <span class="spn-link" (click)="featuredNext()">
+            <i class="fas fa-arrow-circle-right"></i>
+        </span>
+    </div>
+</div>
+
 <div class="row">
     <div class="col-md-6 col-xs-12" *ngFor="let item of posts">
         <div class="post-wrapper shadow">
